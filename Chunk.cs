@@ -1,7 +1,7 @@
-﻿using System;
+﻿using ProceduralWorld.Equations;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
-using ProceduralWorld.Equations;
 
 namespace ProceduralWorld {
 	enum Biomes { water, forest, desert }

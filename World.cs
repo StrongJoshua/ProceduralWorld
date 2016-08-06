@@ -34,7 +34,7 @@ namespace ProceduralWorld {
 
 		public void loadChunkInRadius(Point p, int radius) {
 			loadChunk(p);
-			if(radius > 0) {
+			if (radius > 0) {
 				loadChunkInRadius(new Point(p.X, p.Y + 1), radius - 1);
 				loadChunkInRadius(new Point(p.X + 1, p.Y), radius - 1);
 				loadChunkInRadius(new Point(p.X, p.Y - 1), radius - 1);
