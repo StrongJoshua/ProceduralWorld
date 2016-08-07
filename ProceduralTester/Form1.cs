@@ -1,10 +1,18 @@
-﻿using System.Drawing;
+﻿using ProceduralWorld;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace ProceduralTester {
 	public partial class Form1 : Form {
+		World world;
+
 		public Form1() {
 			InitializeComponent();
+
+			world = new World();
+
+			equationComboBox.Items.AddRange(world.getEquations());
+			equationComboBox.SelectedIndex = 0;
 		}
 
 		private void worldPanel_Paint(object sender, PaintEventArgs e) {

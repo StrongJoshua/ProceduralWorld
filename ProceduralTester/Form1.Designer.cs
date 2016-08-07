@@ -68,8 +68,6 @@
 			// 
 			this.equationComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.equationComboBox.FormattingEnabled = true;
-			this.equationComboBox.Items.AddRange(new object[] {
-            "Frequency Curve"});
 			this.equationComboBox.Location = new System.Drawing.Point(3, 3);
 			this.equationComboBox.Name = "equationComboBox";
 			this.equationComboBox.Size = new System.Drawing.Size(121, 21);

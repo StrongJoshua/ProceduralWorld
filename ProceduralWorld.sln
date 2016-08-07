@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProceduralWorld", "ProceduralWorld.csproj", "{A2715EA2-A72D-48E7-9612-D9BAC17F4257}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProceduralTester", "ProceduralTester\ProceduralTester.csproj", "{072ED605-5AD0-4398-BFB8-9D86D52D28D1}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A2715EA2-A72D-48E7-9612-D9BAC17F4257} = {A2715EA2-A72D-48E7-9612-D9BAC17F4257}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -34,6 +34,7 @@ namespace ProceduralWorld {
 			double value = rand.NextDouble();
 			for (int i = 0; i < chances.Length; i++) {
 				float f = chances[i];
+
 				if (value > f) {
 					value -= f;
 				} else {
@@ -42,6 +43,7 @@ namespace ProceduralWorld {
 					}
 					if (Enum.IsDefined(typeof(Biomes), i)) {
 						Biome = (Biomes)i;
+						return;
 					} else throw new Exception("Biome enum " + i + "is not defined.");
 				}
 			}

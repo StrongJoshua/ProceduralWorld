@@ -62,5 +62,9 @@ namespace ProceduralWorld {
 				chunkSize = value;
 			}
 		}
+
+		public Equation[] getEquations() {
+			return new Equation[] { new FrequencyCurve() };
+		}
 	}
 }
