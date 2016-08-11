@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ProceduralWorld.Equations {
+﻿namespace ProceduralWorld.Equations {
 	public abstract class Equation {
+		public double Modifier { get; set; }
 		public abstract double evaluate(double x);
 	}
 }

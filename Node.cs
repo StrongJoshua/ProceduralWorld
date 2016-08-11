@@ -1,15 +1,9 @@
 ﻿namespace ProceduralWorld {
-	enum Terrain { water, land }
-
 	public class Node {
 		Node[] neighbors = new Node[4];
-		Terrain terrain;
-		int fertility;
 		internal bool Loaded { get; private set; }
-
-		internal Node() {
-
-		}
+		public Biome.Terrain Terrain { get; internal set; }
+		public double Fertility { get; internal set; }
 
 		internal Node TopNode {
 			get {

@@ -41,10 +41,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Biome.cs" />
     <Compile Include="Chunk.cs" />
     <Compile Include="Equations\Equation.cs" />
     <Compile Include="Equations\FrequencyCurve.cs" />
     <Compile Include="Node.cs" />
+    <Compile Include="WorldOptions\DefaultOptions.cs" />
+    <Compile Include="WorldOptions\Options.cs" />
     <Compile Include="World.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

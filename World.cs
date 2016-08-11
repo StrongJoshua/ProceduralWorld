@@ -1,4 +1,5 @@
 ﻿using ProceduralWorld.Equations;
+using ProceduralWorld.WorldOptions;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -8,17 +9,18 @@ namespace ProceduralWorld {
 		Dictionary<Point, Chunk> chunks;
 		Random randomizer;
 		int chunkSize = 8;
-		public Equation Equation { get; set; }
+		Options options;
 
-		public World() {
-			chunks = new Dictionary<Point, Chunk>();
-			randomizer = new Random();
-			addChunkAt(0, 0);
-			Equation = new FrequencyCurve();
+		public World() : this(new DefaultOptions()) {
 		}
 
-		private void addChunkAt(int x, int y) {
-			Point p = new Point(x, y);
+		public World(Options options) {
+			this.options = options;
+			chunks = new Dictionary<Point, Chunk>();
+			randomizer = new Random();
+		}
+
+		private void addChunkAt(Point p) {
 			if (chunks.ContainsKey(p)) throw new ArgumentException("Chunk already exists at " + p);
 			Chunk chunk = new Chunk(p, CHUNK_SIZE);
 			chunks.Add(p, chunk);
@@ -26,10 +28,11 @@ namespace ProceduralWorld {
 		}
 
 		private void addNeighborsIfNotExist(Point p) {
-			if (!chunks.ContainsKey(new Point(p.X, p.Y + 1))) addChunkAt(p.X, p.Y + 1);
-			if (!chunks.ContainsKey(new Point(p.X + 1, p.Y))) addChunkAt(p.X + 1, p.Y);
-			if (!chunks.ContainsKey(new Point(p.X, p.Y - 1))) addChunkAt(p.X, p.Y - 1);
-			if (!chunks.ContainsKey(new Point(p.X - 1, p.Y))) addChunkAt(p.X - 1, p.Y);
+			Point p1 = new Point(p.X, p.Y + 1), p2 = new Point(p.X + 1, p.Y), p3 = new Point(p.X, p.Y - 1), p4 = new Point(p.X - 1, p.Y);
+			if (!chunks.ContainsKey(p1)) addChunkAt(p1);
+			if (!chunks.ContainsKey(p2)) addChunkAt(p2);
+			if (!chunks.ContainsKey(p3)) addChunkAt(p3);
+			if (!chunks.ContainsKey(p4)) addChunkAt(p4);
 		}
 
 		public void loadChunkInRadius(Point p, int radius) {
@@ -45,10 +48,13 @@ namespace ProceduralWorld {
 		public void loadChunk(Point p) {
 			if (p == null) throw new ArgumentNullException();
 			Chunk c;
-			if (!chunks.TryGetValue(p, out c)) throw new ArgumentException("Chunk at position " + p + " has not yet been determined.");
+			if (!chunks.TryGetValue(p, out c)) {
+				addChunkAt(p);
+				chunks.TryGetValue(p, out c);
+			}
 			if (!c.Loaded) {
 				addNeighborsIfNotExist(p);
-				c.load(Equation);
+				c.load(options.Equation, randomizer);
 			}
 		}
 
@@ -63,7 +69,9 @@ namespace ProceduralWorld {
 			}
 		}
 
-		public Equation[] getEquations() {
+		public Dictionary<Point, Chunk> Chunks { get { return chunks; } }
+
+		public static Equation[] getEquations() {
 			return new Equation[] { new FrequencyCurve() };
 		}
 	}
